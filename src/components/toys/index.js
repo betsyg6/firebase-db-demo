@@ -6,7 +6,30 @@ class Toys extends react.Component {
 		super(props);
 		this.state = {
 			toyName: '',
+			toys: [],
 		};
+	}
+
+	componentDidMount() {
+		let puppyId = this.props.match.params.puppyId;
+		this.props.firebase.toys(puppyId).on('value', (snapshot) => {
+			const toysObj = snapshot.val();
+			console.log(toysObj);
+			if (toysObj) {
+				const toysList = Object.keys(toysObj).map((key) => ({
+					...toysObj[key],
+					toysId: key,
+				}));
+
+				this.setState({
+					toys: toysList,
+				});
+			}
+		});
+	}
+
+	componentWillUnmount() {
+		this.props.firebase.toys().off();
 	}
 
 	handleChange = (event) => {
@@ -28,9 +51,17 @@ class Toys extends react.Component {
 	};
 
 	render() {
+		console.log(this.state);
 		return (
 			<div>
 				<h1>I'm a puppy and these are my toys</h1>
+				{this.state.toys.length ? (
+					this.state.toys.map((toy) => {
+						return <li key={toy.toysId}>{toy.toyName}</li>;
+					})
+				) : (
+					<p>No Toys yet!</p>
+				)}
 				<form onSubmit={this.handleSubmit}>
 					<label>My Toy:</label>
 					<input
