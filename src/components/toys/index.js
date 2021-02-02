@@ -9,6 +9,7 @@ class Toys extends react.Component {
 			toyName: '',
 			toys: [],
 			updatedToyName: '',
+			puppyId: '',
 		};
 	}
 
@@ -25,6 +26,7 @@ class Toys extends react.Component {
 
 				this.setState({
 					toys: toysList,
+					puppyId,
 				});
 			}
 		});
@@ -43,9 +45,8 @@ class Toys extends react.Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 
-		let puppyId = this.props.match.params.puppyId;
 		this.props.firebase
-			.toys(puppyId)
+			.toys(this.state.puppyId)
 			.push({ toyName: this.state.toyName })
 			.catch((error) => console.log(error));
 
@@ -53,14 +54,12 @@ class Toys extends react.Component {
 	};
 
 	handleDelete = (toyId) => {
-		let puppyId = this.props.match.params.puppyId;
-		this.props.firebase.modifyToy(puppyId, toyId).remove();
+		this.props.firebase.modifyToy(this.state.puppyId, toyId).remove();
 	};
 
 	handleUpdate = (toyId) => {
-		let puppyId = this.props.match.params.puppyId;
 		this.props.firebase
-			.modifyToy(puppyId, toyId)
+			.modifyToy(this.state.puppyId, toyId)
 			.update({ toyName: this.state.updatedToyName });
 	};
 
