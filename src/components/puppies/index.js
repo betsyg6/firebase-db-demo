@@ -1,5 +1,6 @@
 import react from 'react';
 import { withFirebase } from '../firebase/index';
+import { Link } from 'react-router-dom';
 
 class Puppies extends react.Component {
 	constructor(props) {
@@ -53,7 +54,11 @@ class Puppies extends react.Component {
 				<h1>i love puppies</h1>
 				{this.state.puppies.length ? (
 					this.state.puppies.map((puppy) => {
-						return <li key={puppy.puppyId}>{puppy.puppyName}</li>;
+						return (
+							<li key={puppy.puppyId}>
+								<Link to={`/${puppy.puppyId}/toys`}>{puppy.puppyName}</Link>
+							</li>
+						);
 					})
 				) : (
 					<p>No Puppies yet!</p>
