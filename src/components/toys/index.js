@@ -8,6 +8,7 @@ class Toys extends react.Component {
 		this.state = {
 			toyName: '',
 			toys: [],
+			updatedToyName: '',
 		};
 	}
 
@@ -56,6 +57,13 @@ class Toys extends react.Component {
 		this.props.firebase.modifyToy(puppyId, toyId).remove();
 	};
 
+	handleUpdate = (toyId) => {
+		let puppyId = this.props.match.params.puppyId;
+		this.props.firebase
+			.modifyToy(puppyId, toyId)
+			.update({ toyName: this.state.updatedToyName });
+	};
+
 	render() {
 		return (
 			<div>
@@ -72,6 +80,16 @@ class Toys extends react.Component {
 								>
 									x
 								</button>
+								<form onSubmit={() => this.handleUpdate(toy.toysId)}>
+									<label>Update Name:</label>
+									<input
+										type='text'
+										name='updatedToyName'
+										value={this.state.updatedToyName}
+										onChange={this.handleChange}
+									/>
+									<button type='submit'>Update!</button>
+								</form>
 							</div>
 						);
 					})
