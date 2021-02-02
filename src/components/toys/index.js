@@ -1,5 +1,6 @@
 import react from 'react';
 import { withFirebase } from '../firebase/index';
+import { Link } from 'react-router-dom';
 
 class Toys extends react.Component {
 	constructor(props) {
@@ -50,14 +51,29 @@ class Toys extends react.Component {
 		this.setState({ toyName: '' });
 	};
 
+	handleDelete = (toyId) => {
+		let puppyId = this.props.match.params.puppyId;
+		this.props.firebase.modifyToy(puppyId, toyId).remove();
+	};
+
 	render() {
-		console.log(this.state);
 		return (
 			<div>
+				<Link to='/'>Back</Link>
 				<h1>I'm a puppy and these are my toys</h1>
 				{this.state.toys.length ? (
 					this.state.toys.map((toy) => {
-						return <li key={toy.toysId}>{toy.toyName}</li>;
+						return (
+							<div key={toy.toysId}>
+								<li>{toy.toyName}</li>
+								<button
+									type='button'
+									onClick={() => this.handleDelete(toy.toysId)}
+								>
+									x
+								</button>
+							</div>
+						);
 					})
 				) : (
 					<p>No Toys yet!</p>

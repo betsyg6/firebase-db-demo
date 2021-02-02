@@ -19,6 +19,7 @@ class Firebase {
 	//API routes
 	puppies = () => this.db.ref('puppies');
 	toys = (puppyId) => this.db.ref(`toys/${puppyId}`);
+	modifyToy = (puppyId, toyId) => this.db.ref(`toys/${puppyId}/${toyId}`);
 }
 
 export default Firebase;
