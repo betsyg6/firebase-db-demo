@@ -1,4 +1,4 @@
-# Firebase DB Demo
+# :fire: Firebase DB Demo :fire:
 
 This project was created to show other developers how to use Firebase as a real time database with React. If you're curious about how a specific line works, you can check out the comments branch, where I made comments to walk through how the code works.
 
@@ -10,6 +10,8 @@ cd <directory you want to download to>
 git clone https://github.com/betsyg6/firebase-db-demo.git
 
 npm install
+
+>>follow the firebase project guidelines in the medium article below...the code won't work without the secrets/database config
 
 npm start
 
