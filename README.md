@@ -15,4 +15,4 @@ npm start
 
 ```
 
-:newspaper: Here's a [link](https://grotoned.medium.com/) to the medium article (jk it's not there yet)!
+:newspaper: Here's a [link](https://grotoned.medium.com/tutorial-using-firebase-as-a-realtime-database-with-react-2a3a24c1df91) to the medium article!
