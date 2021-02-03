@@ -1,6 +1,6 @@
 # Firebase DB Demo
 
-This project was created to show other developers how to use Firebase as a real time database with React.
+This project was created to show other developers how to use Firebase as a real time database with React. If you're curious about how a specific line works, you can check out the comments branch, where I made comments to walk through how the code works.
 
 To run the code:
 
