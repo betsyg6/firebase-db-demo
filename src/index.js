@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Toys from './components/toys/index';
 
 ReactDOM.render(
+	//here we're providing the top-most layer of the app with the Firebase Context (similar to the way we provide a store for Redux)
 	<FirebaseContext.Provider value={new Firebase()}>
 		<Router>
 			<Route exact path='/' component={Puppies} />
